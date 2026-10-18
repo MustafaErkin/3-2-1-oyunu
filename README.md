@@ -38,9 +38,9 @@ Sağ üstteki düğmeyle koyu veya açık temayı seçebilirsiniz. Tema tercihi 
 
 | Bilgi | Bu paket |
 | --- | --- |
-| Oyuncu kimliği | 43.602 |
-| Kulüp | 2.154 |
-| Kaynaklı kariyer / transfer / sezon kaydı | 187.134 |
+| Oyuncu kimliği | 36.213 |
+| Kulüp | 2.187 |
+| Kaynaklı kariyer / transfer / sezon kaydı | 310.285 |
 | Paket tarihi | 18.10.2026 |
 | Başlıkta gösterilen dönem | 2026 Yaz |
 
@@ -62,7 +62,7 @@ Uygulama yeni veri taramaz; otomatik güncelleme veya çevrimiçi tamamlama yokt
 
 ## İnternet ve gizlilik
 
-İlk açılışta siteyle birlikte yaklaşık **2,39 MiB** sıkıştırılmış veri yüklenir.
+İlk açılışta siteyle birlikte yaklaşık **3,35 MiB** sıkıştırılmış veri yüklenir.
 Veri yüklendikten sonra aramalar cihazın içinde çalışır; yazılan isimler sunucuya
 gönderilmez. Açık sekmede internet kesilse de arama devam eder. İnternetsiz yeniden
 açılış garanti edilmez; kalıcı çevrimdışı kullanım için ayrı Windows paketi vardır.
@@ -78,7 +78,8 @@ yerel depolaması kullanılır; özel modda tercih kalıcı olmayabilir.
 - [eordo/transfermarkt-data](https://github.com/eordo/transfermarkt-data) transfer arşivi.
 - [ewenme/squads](https://github.com/ewenme/squads) sezon kadroları.
 - [salimt/football-datasets](https://github.com/salimt/football-datasets) kulüp ilişkileri.
-- [Wikidata](https://www.wikidata.org/) kalıcı kimlik eşleştirmeleri.
+- [Wikidata](https://www.wikidata.org/) kulüp dönemleri, kiralık işaretleri, doğum yılları ve
+  kalıcı kimlik eşleştirmeleri ([CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)).
 
 Veriler ortak bir şemaya dönüştürülmüş, kulüp kapsamı süzülmüş ve adlar eşleştirilmiştir.
 Kaynak adresleri her kayıtta korunmuştur. Arşivlerin asıl sağlayıcısı Transfermarkt'tır;
