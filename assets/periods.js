@@ -11,7 +11,10 @@
     transfer_both:'Giriş/çıkış transfer kayıtları; kesin dönem bilinmiyor',
     season:'Sezon kadrosu'
   }[row.precision] || '');
-  const compact = row => `${years(row)}${transfer(row) ? ' (transfer kaydı)' : row.precision === 'season' ? ' (sezon)' : ''}`;
+  const compact = row => {
+    const notes = [transfer(row) ? 'transfer kaydı' : row.precision === 'season' ? 'sezon' : '', row.loan ? 'kiralık' : ''].filter(Boolean);
+    return `${years(row)}${notes.length ? ` (${notes.join(', ')})` : ''}`;
+  };
   const api = {years, detail, compact, transfer};
   root.kesisimPeriods = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
