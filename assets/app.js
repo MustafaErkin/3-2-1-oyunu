@@ -6,7 +6,7 @@ const el = (tag, cls, text) => {const n = document.createElement(tag); if (cls) 
 const flag = code => /^[A-Z]{2}$/.test(code || '') ? [...code].map(c => String.fromCodePoint(127397 + c.charCodeAt(0))).join('') : '';
 const years = globalThis.kesisimPeriods.years;
 const teamMeta = t => [flag(t.country_code), t.country || 'Ülke bilinmiyor', t.level, t.kind].filter(Boolean).join(' · ');
-const playerMeta = p => [p.birth_year ? `${p.birth_year} doğumlu` : 'Doğum yılı bilinmiyor', p.nationality || 'Uyruk bilinmiyor'].join(' · ');
+const playerMeta = p => [p.birth_year ? `${p.birth_year} doğumlu` : 'Doğum yılı bilinmiyor', p.nationality || 'Uyruk bilinmiyor', p.clubs?.join(', ')].filter(Boolean).join(' · ');
 
 async function api(url, method = 'GET', body, signal) {
   if (globalThis.kesisimWebApi) return globalThis.kesisimWebApi(url, method, body, signal);

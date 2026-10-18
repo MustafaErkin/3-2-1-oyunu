@@ -22,7 +22,9 @@ güncel tarayıcısından bağlantıyı açmak yeterlidir.
 
 `FB`, `Cimbom`, `Barça` gibi takma adlar kullanılabilir. Türkçe harfler ve aksanlar
 aramayı engellemez: `İ/ı/í → i`, `ş → s`, `ñ → n`, `ø → o`.
-Oyuncu önerilerinde yazılan kelimelere uymayan benzer isimler gösterilmez.
+Oyuncu önerilerinde yazılan kelimelere uymayan benzer isimler gösterilmez. Aynı adlı
+oyuncuları ayırmak için önerilerde doğum yılı, uyruk ve en çok sezon geçirdiği kulüpler
+yazar; tam adla da aranabilir (`ronaldo nazario`).
 
 Sağ üstteki düğmeyle koyu veya açık temayı seçebilirsiniz. Tema tercihi bu tarayıcıda saklanır.
 
@@ -38,9 +40,9 @@ Sağ üstteki düğmeyle koyu veya açık temayı seçebilirsiniz. Tema tercihi 
 
 | Bilgi | Bu paket |
 | --- | --- |
-| Oyuncu kimliği | 36.213 |
-| Kulüp | 1.963 |
-| Kaynaklı kariyer / transfer / sezon kaydı | 311.217 |
+| Oyuncu kimliği | 35.847 |
+| Kulüp | 1.866 |
+| Kaynaklı kariyer / transfer / sezon kaydı | 311.223 |
 | Paket tarihi | 18.10.2026 |
 | Başlıkta gösterilen dönem | 2026 Yaz |
 
@@ -62,7 +64,7 @@ Uygulama yeni veri taramaz; otomatik güncelleme veya çevrimiçi tamamlama yokt
 
 ## İnternet ve gizlilik
 
-İlk açılışta siteyle birlikte yaklaşık **3,34 MiB** sıkıştırılmış veri yüklenir.
+İlk açılışta siteyle birlikte yaklaşık **3,48 MiB** sıkıştırılmış veri yüklenir.
 Veri yüklendikten sonra aramalar cihazın içinde çalışır; yazılan isimler sunucuya
 gönderilmez. Açık sekmede internet kesilse de arama devam eder. İnternetsiz yeniden
 açılış garanti edilmez; kalıcı çevrimdışı kullanım için ayrı Windows paketi vardır.
@@ -78,8 +80,8 @@ yerel depolaması kullanılır; özel modda tercih kalıcı olmayabilir.
 - [eordo/transfermarkt-data](https://github.com/eordo/transfermarkt-data) transfer arşivi.
 - [ewenme/squads](https://github.com/ewenme/squads) sezon kadroları.
 - [salimt/football-datasets](https://github.com/salimt/football-datasets) kulüp ilişkileri.
-- [Wikidata](https://www.wikidata.org/) kulüp dönemleri, kiralık işaretleri, doğum yılları ve
-  kalıcı kimlik eşleştirmeleri ([CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)).
+- [Wikidata](https://www.wikidata.org/) kulüp dönemleri, kiralık işaretleri, doğum yılları, oyuncuların
+  tam/yerel adları ve kalıcı kimlik eşleştirmeleri ([CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)).
 
 Veriler ortak bir şemaya dönüştürülmüş, kulüp kapsamı süzülmüş ve adlar eşleştirilmiştir.
 Kaynak adresleri her kayıtta korunmuştur. Arşivlerin asıl sağlayıcısı Transfermarkt'tır;

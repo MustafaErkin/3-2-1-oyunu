@@ -29,8 +29,8 @@
     return 100 * (1 - prev[b.length] / Math.max(a.length, b.length));
   }
   class SearchIndex {
-    constructor(entities, aliases) {
-      this.entities = entities;
+    constructor(entities, aliases, weight = () => 0) {
+      this.entities = entities; this.weight = weight;
       this.names = new Map([...entities].map(([id, row]) => [id, new Set([row.norm])]));
       for (const [id, name] of aliases) if (this.names.has(id) && normalize(name)) this.names.get(id).add(normalize(name));
       this.postings = new Map();
@@ -66,7 +66,7 @@
           if (score >= 75) result.push({row: this.entities.get(id), score});
         }
       }
-      return result.sort((a, b) => b.score - a.score || byName(a.row, b.row)).slice(0, limit).map(r => r.row);
+      return result.sort((a, b) => b.score - a.score || this.weight(b.row) - this.weight(a.row) || byName(a.row, b.row)).slice(0, limit).map(r => r.row);
     }
   }
   class Engine {
@@ -89,7 +89,22 @@
       for (const roster of this.byTeam.values()) for (const periods of roster.values()) periods.sort(byPeriod);
       for (const periods of this.byPlayer.values()) periods.sort((a, b) => Number(a.start_year == null) - Number(b.start_year == null) || nullableYear(a.start_year) - nullableYear(b.start_year) || nullableYear(a.end_year) - nullableYear(b.end_year) || compare(this.teams.get(a.team_id).norm, this.teams.get(b.team_id).norm) || compare(a.source, b.source) || a.id - b.id);
       this.teamSearch = new SearchIndex(this.teams, data.team_aliases);
-      this.playerSearch = new SearchIndex(this.players, data.player_aliases);
+      // Among equally good matches the player with the longer recorded career comes first.
+      this.playerSearch = new SearchIndex(this.players, data.player_aliases, row => this.byPlayer.get(row.id).length);
+    }
+    mainClubs(id, limit = 3) {
+      // Clubs with the most recorded seasons, in career order: tells namesakes apart ("Ronaldo").
+      const seasons = new Map();
+      for (const r of this.byPlayer.get(id)) {
+        const start = r.start_year ?? r.end_year;
+        if (start == null) continue;
+        const end = Math.min(r.end_year ?? start, start + 25);
+        if (!seasons.has(r.team_id)) seasons.set(r.team_id, new Set());
+        for (let y = start; y <= end; y++) seasons.get(r.team_id).add(y);
+      }
+      const first = years => Math.min(...years);
+      return [...seasons].sort((a, b) => b[1].size - a[1].size || first(a[1]) - first(b[1])).slice(0, limit)
+        .sort((a, b) => first(a[1]) - first(b[1])).map(([team]) => this.teams.get(team).name);
     }
     intersection(a, b) {
       a = Number(a); b = Number(b);
@@ -105,7 +120,8 @@
       if (path === '/api/takim-ara' || path === '/api/oyuncu-ara') {
         const q = params.q || '';
         if (q.length > 120) throw new Error('Arama metni en fazla 120 karakter olabilir.');
-        return {dataset: 'live', items: (path === '/api/takim-ara' ? this.teamSearch : this.playerSearch).find(q, path === '/api/takim-ara')};
+        if (path === '/api/takim-ara') return {dataset: 'live', items: this.teamSearch.find(q, true)};
+        return {dataset: 'live', items: this.playerSearch.find(q).map(row => ({...row, clubs: this.mainClubs(row.id)}))};
       }
       if (path === '/api/kesisim') return this.intersection(params.t1, params.t2);
       if (/^\/api\/oyuncu\/\d+$/.test(path)) {
