@@ -84,27 +84,3 @@ Veriler ortak bir şemaya dönüştürülmüş, kulüp kapsamı süzülmüş ve 
 Kaynak adresleri her kayıtta korunmuştur. Arşivlerin asıl sağlayıcısı Transfermarkt'tır;
 kaynakların kullanım koşulları geçerlidir. Tüm veri paketine tek bir yazılım lisansı
 atfedilmez. [Kaynak adresleri ve kapsam notları](KAYNAKLAR.txt).
-
-## GitHub Pages kurulumu
-
-1. `MustafaErkin` hesabında **3-2-1-oyunu** adlı herkese açık bir depo oluşturun.
-2. Hazırlanmış `github-pages` klasörünün **içeriğini** deponun köküne yükleyin.
-   `index.html`, `assets/`, `data/` ve `.nojekyll` kökte bulunmalıdır.
-3. **Settings → Pages → Build and deployment** bölümünde **Deploy from a branch** seçin.
-4. Dal olarak **main**, klasör olarak **/(root)** seçip **Save** düğmesine basın.
-5. Yayın tamamlanınca üstteki oyun adresini paylaşın. GitHub depo adresi dosya
-   listesini açar; ziyaretçilere `github.io` ile biten site adresini gönderin.
-
-Site hesabın sahibinin bilgisayarı kapalıyken de çalışır. Hesap, depo veya Pages yayını
-kaldırılırsa bağlantı kapanır; süresiz erişim garantisi yoktur.
-
-## Teknik notlar
-
-Tek HTML sayfası, vanilla JavaScript ve Web Worker kullanılır. npm/build adımı veya
-Python sunucusu gerekmez. Güncel Chrome, Edge, Firefox veya Safari ve JavaScript gerekir.
-Gzip açma desteği yoksa 9,23 MiB JSON yedeği kullanılır. Veri dosyalarının
-SHA-256 özeti yüklenirken denetlenir. Bütün varlık adresleri proje alt yoluyla uyumludur.
-
-Bu yayın klasörü ana projedeki `packaging/build_web.py` tarafından yerel SQLite
-veritabanından üretilir. Windows EXE'si, kullanıcı ayarları, günlükler ve yedekler
-GitHub Pages paketine alınmaz.
