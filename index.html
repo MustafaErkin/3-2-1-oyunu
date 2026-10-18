@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="İki kulübün ortak futbolcularını ve oyuncuların kariyerlerini arayın. 3-2-1 Oyunu — Futbolun ortak geçmişi.">
+  <meta name="color-scheme" content="dark light">
+  <title>3-2-1 Oyunu · Futbolun ortak geçmişi</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23b9e4a0'/%3E%3Ctext x='9' y='29' font-size='28' fill='%23101815'%3EK%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./assets/style.css">
+  <script src="./assets/normalize.js" defer></script>
+  <script src="./assets/periods.js" defer></script>
+  <script src="./assets/client.js" defer></script>
+  <script src="./assets/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="header">
+      <div class="brand"><div class="brand-mark" aria-hidden="true">∩</div><div><h1>3-2-1 Oyunu<span>.</span></h1><p>Futbolun ortak geçmişi</p></div></div>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Açık temaya geç" aria-pressed="false">☀ Açık tema</button>
+    </header>
+
+    <div class="data-heading" aria-live="polite"><strong id="calendar-period">Son Geçerli Transfer Dönemi: yükleniyor…</strong></div>
+
+    <nav class="tabs" role="tablist" aria-label="Arama türü">
+      <button role="tab" id="tab-intersection" aria-controls="intersection-panel" aria-selected="true" data-tab="intersection">Takım Kesişimi <kbd>Ctrl 1</kbd></button>
+      <button role="tab" id="tab-player" aria-controls="player-panel" aria-selected="false" data-tab="player" tabindex="-1">Oyuncu Ara <kbd>Ctrl 2</kbd></button>
+    </nav>
+
+    <main>
+      <div id="error" class="notice error" role="alert" hidden><span id="error-message"></span><button id="dismiss-error" aria-label="Hata mesajını kapat">×</button></div>
+      <section id="intersection-panel" role="tabpanel" aria-labelledby="tab-intersection">
+        <div class="section-heading"><div class="eyebrow">İKİ TAKIM, ORTAK İSİMLER</div><h2>Yolları nerede kesişti?</h2><p>İki takım seçin. İkisinde de oynamış oyuncuları görün.</p></div>
+        <div class="team-grid">
+          <div class="search-field" id="team1-field"><label for="team1">Birinci takım</label><div class="input-wrap"><span aria-hidden="true">⌕</span><input id="team1" placeholder="Takım adı veya takma adı…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="team1-options"><button class="clear-input" aria-label="Birinci takımı temizle" tabindex="-1">×</button></div><div class="selected-meta" id="team1-meta">Örn. Fenerbahçe, Barça, Sakaryaspor</div><ul id="team1-options" role="listbox" hidden></ul></div>
+          <div class="intersection-mark" aria-hidden="true">∩</div>
+          <div class="search-field" id="team2-field"><label for="team2">İkinci takım</label><div class="input-wrap"><span aria-hidden="true">⌕</span><input id="team2" placeholder="Takım adı veya takma adı…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="team2-options"><button class="clear-input" aria-label="İkinci takımı temizle" tabindex="-1">×</button></div><div class="selected-meta" id="team2-meta">Örn. Galatasaray, Beşiktaş, Boca Juniors</div><ul id="team2-options" role="listbox" hidden></ul></div>
+        </div>
+
+        <div id="intersection-empty" class="empty-state"><div class="pitch" aria-hidden="true"><i></i></div><h3>Bir ortak geçmiş bulalım.</h3><p>Başlamak için yukarıdan iki takım seçin.</p><span>Emekli oyuncular · Alt ligler · Farklı dönemler</span></div>
+        <div id="intersection-results" hidden>
+          <div class="results-top"><div class="result-total"><strong id="common-count">0</strong><div><h3>ortak oyuncu</h3><p id="result-note">Yerel veritabanında bulunan kayıtlar</p></div></div><label class="filter-label" for="result-filter"><span>Listede isim bul</span><input id="result-filter" type="search" placeholder="Söylenen oyuncunun adı…" autocomplete="off"></label></div>
+          <p id="same-team-note" class="muted" hidden>Aynı takım iki kez seçildiğinde o takımın bütün oyuncuları gösterilir.</p>
+          <div class="list-heading"><span>OYUNCU</span><span>TAKIMLARDAKİ DÖNEMLER</span></div>
+          <div id="common-list" aria-live="polite"></div>
+          <p id="filtered-empty" class="empty-message" hidden>Bu isimle eşleşen oyuncu bulunamadı.</p>
+        </div>
+      </section>
+
+      <section id="player-panel" role="tabpanel" aria-labelledby="tab-player" hidden>
+        <div class="section-heading"><div class="eyebrow">BİR İSİM, A TAKIM GEÇMİŞİ</div><h2>Hangi formaları giydi?</h2><p>Bir oyuncu seçin. Seçili kapsamdaki A takım dönemlerini yıllarıyla inceleyin.</p></div>
+        <div class="search-field player-search" id="player-field"><label for="player">Oyuncu adı</label><div class="input-wrap"><span aria-hidden="true">⌕</span><input id="player" placeholder="Oyuncunun adını yazın…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="player-options"><button class="clear-input" aria-label="Oyuncuyu temizle" tabindex="-1">×</button></div><div class="selected-meta" id="player-meta">Aynı adlı oyuncuları doğum yılı ve uyruğuyla ayırt edin.</div><ul id="player-options" role="listbox" hidden></ul></div>
+        <div id="player-empty" class="empty-state"><div class="career-symbol" aria-hidden="true">↳</div><h3>Her formanın bir hikâyesi var.</h3><p>Kariyeri görmek için bir oyuncu seçin.</p></div>
+        <div id="player-results" hidden><div class="career-heading"><div><h3 id="player-name"></h3><p id="player-details"></p></div></div><div id="career-list"></div><p class="muted">“?” bilinmeyen yılı gösterir; bitiş yılı bilinmeyen kayıt, oyuncunun hâlâ o takımda olduğunu göstermez. Kapsam dışındaki kulüpler ve altyapı dönemleri gösterilmez.</p></div>
+      </section>
+    </main>
+
+    <footer><div class="status-dot" aria-hidden="true"></div><span id="db-status">Oyuncu verileri yükleniyor…</span><a class="sources-link" href="./KAYNAKLAR.txt" target="_blank" rel="noopener">Veri kaynakları</a><span class="shortcut">Esc temizle · Tab ilerle</span></footer>
+  </div>
+<noscript>Arama yapabilmek için tarayıcınızda JavaScript açık olmalıdır.</noscript>
+</body>
+</html>
