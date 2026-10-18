@@ -39,8 +39,8 @@ Sağ üstteki düğmeyle koyu veya açık temayı seçebilirsiniz. Tema tercihi 
 | Bilgi | Bu paket |
 | --- | --- |
 | Oyuncu kimliği | 36.213 |
-| Kulüp | 2.187 |
-| Kaynaklı kariyer / transfer / sezon kaydı | 310.285 |
+| Kulüp | 1.963 |
+| Kaynaklı kariyer / transfer / sezon kaydı | 311.217 |
 | Paket tarihi | 18.10.2026 |
 | Başlıkta gösterilen dönem | 2026 Yaz |
 
@@ -62,7 +62,7 @@ Uygulama yeni veri taramaz; otomatik güncelleme veya çevrimiçi tamamlama yokt
 
 ## İnternet ve gizlilik
 
-İlk açılışta siteyle birlikte yaklaşık **3,35 MiB** sıkıştırılmış veri yüklenir.
+İlk açılışta siteyle birlikte yaklaşık **3,34 MiB** sıkıştırılmış veri yüklenir.
 Veri yüklendikten sonra aramalar cihazın içinde çalışır; yazılan isimler sunucuya
 gönderilmez. Açık sekmede internet kesilse de arama devam eder. İnternetsiz yeniden
 açılış garanti edilmez; kalıcı çevrimdışı kullanım için ayrı Windows paketi vardır.
